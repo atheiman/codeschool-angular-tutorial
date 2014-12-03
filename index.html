@@ -6,10 +6,12 @@
     <script type="text/javascript" src="app.js"></script>
   </head>
   <body ng-controller="StoreController as store" style="max-width:500px; margin:0px auto;">
+
     <!--  Products Container  -->
     <div class="list-group">
+
       <!--  Product Container  -->
-      <div class="list-group-item" ng-repeat="product in store.products">
+      <div class="list-group-item" ng-repeat="product in store.products" ng-init="tab = 1">
         <h3>
           {{ product.name }}
           <em class="pull-right">{{ product.price | currency }}</em>
@@ -24,7 +26,34 @@
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+
+        <section class="tab" ng-controller="TabController as tab">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSelected(1) }">
+              <a href ng-click="tab.selectTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active:tab.isSelected(2) }">
+              <a href ng-click="tab.selectTab(2)">Specs</a>
+            </li>
+            <li ng-class="{ active:tab.isSelected(3) }">
+              <a href ng-click="tab.selectTab(3)">Reviews</a>
+            </li>
+          </ul>
+          <div ng-show="tab.isSelected(1)">
+            <h4>Description</h4>
+            <blockquote>{{ product.description }}</blockquote>
+          </div>
+          <div ng-show="tab.isSelected(2)">
+            <h4>Specs</h4>
+            <blockquote>Shine: {{ product.shine }}</blockquote>
+          </div>
+          <div ng-show="tab.isSelected(3)">
+            <h4>Reviews</h4>
+            <blockquote></blockquote>
+          </div>
+        </section>
+
+      </div> <!-- End product container -->
+    </div> <!-- End products container -->
   </body>
 </html>
