@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="store">
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  </head>
+
+  <body ng-controller="StoreController as store" class="container">
+
+    <div class="row">
+      <div ng-repeat="product in store.products" class="col-sm-6">
+        <div ng-hide="product.soldOut">
+          <h2>
+            {{ product.name }}
+            <em class="pull-right">${{ product.price }}</em>
+          </h2>
+          <p ng-show="product.description">
+            {{ product.description }}
+          </p>
+          <p ng-hide="product.description">
+            This product, as much as any of our products, will please anyone on your holiday gift list.
+          </p>
+          <button ng-if="product.canPurchase">Add to Cart</button>
+          <button ng-if="product.canPurchase === false" disabled>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+
+    <script src="app.js"></script>
+
+  </body>
+
+</html>
