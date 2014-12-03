@@ -18,21 +18,13 @@
         </h3>
 
         <!-- Image Gallery  -->
-        <div class="gallery" ng-show="product.images.length > 0">
-          <img class="img img-circle img-thumbnail center-block" ng-src="{{ product.images[0] }}" />
-          <ul class="clearfix">
-            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-              <img ng-src="{{ image }}" style="height:50px;" />
-            </li>
-          </ul>
-        </div>
-
-        <!-- Image Gallery  -->
         <div class='gallery' ng-show="product.images.length > 0" ng-controller="GalleryController as gallery">
           <img class="img img-circle center-block" ng-src="{{ product.images[gallery.current] }}" />
-          <ul class="clearfix list-inline thumbs">
+          <ul class="clearfix">
             <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-              <img ng-src="{{ image }}" style="height:50px;" />
+              <a href ng-click="gallery.setCurrent(product.images.indexOf(image))">
+                <img ng-src="{{ image }}" style="height:50px;" />
+              </a>
             </li>
           </ul>
         </div>
@@ -50,17 +42,19 @@
               <a href ng-click="tab.selectTab(3)">Reviews</a>
             </li>
           </ul>
-          <div ng-show="tab.isSelected(1)">
-            <h4>Description</h4>
-            <blockquote>{{ product.description }}</blockquote>
-          </div>
-          <div ng-show="tab.isSelected(2)">
-            <h4>Specs</h4>
-            <blockquote>Shine: {{ product.shine }}</blockquote>
-          </div>
-          <div ng-show="tab.isSelected(3)">
-            <h4>Reviews</h4>
-            <blockquote></blockquote>
+          <div style="height:150px;">
+            <div ng-show="tab.isSelected(1)">
+              <h4>Description</h4>
+              <blockquote>{{ product.description }}</blockquote>
+            </div>
+            <div ng-show="tab.isSelected(2)">
+              <h4>Specs</h4>
+              <blockquote>Shine: {{ product.shine }}</blockquote>
+            </div>
+            <div ng-show="tab.isSelected(3)">
+              <h4>Reviews</h4>
+              <blockquote></blockquote>
+            </div>
           </div>
         </section>
 
