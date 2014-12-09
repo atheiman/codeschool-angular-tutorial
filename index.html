@@ -55,10 +55,7 @@
           <div style="min-height:100px; overflow-y:scroll;">
 
             <!-- Description Tab Content -->
-            <div ng-show="tab.isSelected(1)">
-              <h4>Description</h4>
-              <blockquote>{{ product.description }}</blockquote>
-            </div>
+            <product-description ng-show="tab.isSelected(1)"></product-description>
 
             <!-- Spec Tab Content -->
             <div ng-show="tab.isSelected(2)">
